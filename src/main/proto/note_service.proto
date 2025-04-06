@@ -5,17 +5,45 @@ package com.fugisawa.grpc.noteservice;
 option java_package = "com.fugisawa.grpc.noteservice";
 option java_multiple_files = true;
 
+import "google/protobuf/wrappers.proto";
+
 service NoteService {
   rpc CreateNote (CreateNoteRequest) returns (Note);
 }
 
 message CreateNoteRequest {
   string title = 1;
-  string content = 2;
+  optional string content = 2;
+  repeated string tags = 3;
+  NoteStatus status = 4;
+  map<string, string> metadata = 5;
+  Attachment attachment = 6;
 }
 
 message Note {
   string id = 1;
   string title = 2;
-  string content = 3;
+  optional string content = 3;
+  repeated string tags = 4;
+  NoteStatus status = 5;
+  map<string, string> metadata = 6;
+  Attachment attachment = 7;
+  NoteMetadata metadata_details = 8;
+}
+
+enum NoteStatus {
+  UNKNOWN = 0;
+  ACTIVE = 1;
+  ARCHIVED = 2;
+}
+
+message NoteMetadata {
+  google.protobuf.Int32Value word_count = 1;
+}
+
+message Attachment {
+  oneof source {
+    string file_path = 1;
+    string url = 2;
+  }
 }
