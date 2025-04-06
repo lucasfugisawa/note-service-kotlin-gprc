@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.fugisawa.grpc.noteservice;
+
+option java_package = "com.fugisawa.grpc.noteservice";
+option java_multiple_files = true;
+
+service NoteService {
+  rpc CreateNote (CreateNoteRequest) returns (Note);
+}
+
+message CreateNoteRequest {
+  string title = 1;
+  string content = 2;
+}
+
+message Note {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+}
