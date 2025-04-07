@@ -29,7 +29,7 @@ protobuf {
     }
     plugins {
         create("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.71.0"
+            artifact = "io.grpc:protoc-gen-grpc-java:1.57.2"
         }
         create("grpckt") {
             artifact = "io.grpc:protoc-gen-grpc-kotlin:1.4.1:jdk8@jar"
@@ -51,6 +51,7 @@ protobuf {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(21)
 }
