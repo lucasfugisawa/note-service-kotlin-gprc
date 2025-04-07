@@ -18,6 +18,7 @@ message CreateNoteRequest {
   NoteStatus status = 4;
   map<string, string> metadata = 5;
   Attachment attachment = 6;
+  Author author = 7;
 }
 
 message Note {
@@ -29,6 +30,19 @@ message Note {
   map<string, string> metadata = 6;
   Attachment attachment = 7;
   NoteMetadata metadata_details = 8;
+  Author author = 9;
+  Timestamps timestamps = 10;
+}
+
+message Author {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message Timestamps {
+  string created_at = 1;
+  string updated_at = 2;
 }
 
 enum NoteStatus {
