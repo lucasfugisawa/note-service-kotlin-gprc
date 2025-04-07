@@ -9,6 +9,9 @@ import "google/protobuf/wrappers.proto";
 
 service NoteService {
   rpc CreateNote (CreateNoteRequest) returns (Note);
+  rpc StreamNotesByTag (NoteTagFilter) returns (stream Note);
+  rpc CreateNotes (stream Note) returns (NoteBatchSummary);
+  rpc NoteCollab (stream Note) returns (stream Note);
 }
 
 message CreateNoteRequest {
@@ -19,6 +22,14 @@ message CreateNoteRequest {
   map<string, string> metadata = 5;
   Attachment attachment = 6;
   Author author = 7;
+}
+
+message NoteTagFilter {
+  string tag = 1;
+}
+
+message NoteBatchSummary {
+  int32 count = 1;
 }
 
 message Note {
